@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Model Machine Learning</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="predictpage.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Prediksi Model Machine Learning</h2>
+    <p>Gunakan alat prediksi kami untuk melakukan prediksi dengan model machine learning.</p>
+    
+    <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+        <label for="csvFile">Upload .csv File:</label>
+        <div class="upload-box">
+            <input type="file" id="csvFile" name="csvFile" accept=".csv" required />
+        </div>
+        <button type="submit" class="btn-submit">Predict</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="result">
+        {% if prediction %}
+            <div class="result-box">Prediction: {{ prediction }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Nama Perusahaan. Semua hak dilindungi.</p>
+</footer>
+
+</body>
+</html>
